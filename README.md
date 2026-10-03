@@ -1,43 +1,87 @@
 # Customer Churn Prediction
 
-This project builds a predictive machine learning pipeline to identify customers at risk of churning. Using Artificial Neural Networks (ANN) and traditional machine learning algorithms, the system evaluates customer demographics and financial behavior to output a churn probability score.
+A machine learning pipeline that identifies bank customers at risk of churning. It uses an Artificial Neural Network (ANN) alongside traditional ML algorithms to evaluate customer demographics and financial behavior and output a churn probability score, served through an interactive Streamlit web app.
+
+## Dataset
+
+The project uses the **Bank Customer Churn Prediction** dataset from Kaggle:
+
+- **Source:** [Bank Customer Churn Prediction Dataset](https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset) by Saurabh Badole
+- **Size:** 10,000 customer records
+- **Target:** `Exited` (1 = customer churned, 0 = customer stayed)
+- **Features:** `CreditScore`, `Geography`, `Gender`, `Age`, `Tenure`, `Balance`, `NumOfProducts`, `HasCrCard`, `IsActiveMember`, `EstimatedSalary`
+- **Identifier columns** (`RowNumber`, `CustomerId`, `Surname`) carry no predictive signal and are dropped during preprocessing.
 
 ## Features
-- **Data Preprocessing**: Handles missing data, categorical encoding (Label Encoding, One-Hot Encoding), and feature scaling.
-- **Deep Learning Model**: A custom ANN built with TensorFlow/Keras to model complex non-linear relationships.
-- **Traditional ML Models**: Benchmarking with standard machine learning algorithms.
-- **Web Application**: Interactive web deployment to evaluate real-time customer data.
+
+- **Data Preprocessing:** Handles missing data, categorical encoding (Label Encoding and One-Hot Encoding) and feature scaling.
+- **Deep Learning Model:** A custom ANN built with TensorFlow/Keras to capture complex non-linear relationships.
+- **Traditional ML Models:** Baseline benchmarking with standard machine learning algorithms.
+- **Hyperparameter Tuning:** Systematic tuning of the ANN architecture and training parameters.
+- **Web Application:** A Streamlit interface for scoring customer data in real time.
 
 ## Project Structure
-- \pp.py\: The web application file for the deployment interface.
-- \Customer_Churn_Prediction_ANN.ipynb\: Jupyter notebook detailing the data exploration, preprocessing, and building of the ANN model.
-- \Customer_Churn_Prediction_ML_Algos.ipynb\: Notebook exploring baseline machine learning models.
-- \hyperparametertuningann.ipynb\: Notebook covering hyperparameter tuning for the ANN.
-- \prediction.ipynb\: Demonstration of making predictions with the trained models.
-- equirements.txt\: Python environment dependencies.
-- \*.pkl\ & \*.h5\: Serialized models, scalers, and encoders used for inference.
+
+| File | Description |
+|------|-------------|
+| `app.py` | Streamlit web application for deployment |
+| `Customer_Churn_Prediction_ANN.ipynb` | Data exploration, preprocessing and ANN model building |
+| `Customer_Churn_Prediction_ML_Algos.ipynb` | Baseline machine learning models |
+| `hyperparametertuningann.ipynb` | Hyperparameter tuning for the ANN |
+| `prediction.ipynb` | Making predictions with the trained model and encoders |
+| `requirements.txt` | Python dependencies |
+| `*.pkl`, `*.h5` | Serialized scalers, encoders and the trained model used for inference |
 
 ## Getting Started
 
 ### Prerequisites
-Ensure you have Python installed.
+
+- Python 3.8 or higher
+- pip
 
 ### Installation
-1. Clone this repository:
-   \\ash
+
+1. Clone the repository:
+
+   ```bash
    git clone https://github.com/Jashwanth020/customer-churn-prediction.git
    cd customer-churn-prediction
-   \\n2. Create and activate a virtual environment (optional but recommended):
-   \\ash
+   ```
+
+2. (Optional but recommended) Create and activate a virtual environment:
+
+   ```bash
    python -m venv venv
-   # On Windows:
+
+   # Windows
    venv\Scripts\activate
-   \\n3. Install the dependencies:
-   \\ash
+
+   # macOS / Linux
+   source venv/bin/activate
+   ```
+
+3. Install the dependencies:
+
+   ```bash
    pip install -r requirements.txt
-   \\n
+   ```
+
+4. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset) and place the CSV file in the project root. This is only needed to re-run the notebooks; the web app uses the saved model files.
+
 ### Running the Application
-Start the web application using the following command (Streamlit application):
-\\ash
+
+Start the Streamlit app:
+
+```bash
 streamlit run app.py
-\\n
+```
+
+Then open the local URL shown in the terminal, enter a customer's details, and the app returns their churn probability.
+
+## Tech Stack
+
+Python, TensorFlow/Keras, scikit-learn, pandas, NumPy, Streamlit
+
+## Acknowledgements
+
+Dataset by [Saurabh Badole](https://www.kaggle.com/saurabhbadole) on Kaggle.
